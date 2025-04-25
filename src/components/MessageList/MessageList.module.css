@@ -1,0 +1,48 @@
+.messageList {
+  flex-grow: 1; /* Ocupa o espaço disponível */
+  padding: 15px;
+  overflow-y: auto; /* Adiciona scroll se necessário */
+  background-color: #1c1c1c; /* Fundo um pouco mais claro */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaço entre as mensagens */
+}
+
+/* Estilo para o indicador de "digitando" */
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin-left: 5px; /* Alinha com as mensagens do bot */
+}
+
+.typingIndicator span {
+  height: 8px;
+  width: 8px;
+  background-color: #aaa;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+  animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typingIndicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typingIndicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.typingIndicator span:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

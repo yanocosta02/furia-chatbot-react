@@ -1,0 +1,41 @@
+.messageRow {
+  display: flex;
+  align-items: flex-end; /* Alinha avatar com a base do balão */
+  margin-bottom: 5px;
+}
+
+.userRow {
+  justify-content: flex-end; /* Mensagem do usuário na direita */
+}
+
+.botRow {
+  justify-content: flex-start; /* Mensagem do bot na esquerda */
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background-color: #555; /* Cor de fundo caso a imagem falhe */
+}
+
+.messageBubble {
+  max-width: 75%; /* Evita que o balão ocupe a largura toda */
+  padding: 10px 15px;
+  border-radius: 18px; /* Balão arredondado */
+  word-wrap: break-word; /* Quebra palavras longas */
+  line-height: 1.4;
+}
+
+.userMessage {
+  background-color: #007bff; /* Azul para usuário (pode mudar) */
+  color: white;
+  border-bottom-right-radius: 5px; /* Detalhe visual */
+}
+
+.botMessage {
+  background-color: #444; /* Cinza escuro para bot */
+  color: white;
+  border-bottom-left-radius: 5px; /* Detalhe visual */
+}

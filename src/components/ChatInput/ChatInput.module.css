@@ -1,0 +1,38 @@
+/* src/components/ChatInput/ChatInput.module.css */
+.chatInputForm {
+  display: flex;
+  padding: 10px;
+  background-color: #222; /* Fundo escuro para o input */
+  border-top: 1px solid #333;
+}
+
+.inputField {
+  flex-grow: 1;
+  padding: 10px 15px;
+  border: 1px solid #555;
+  border-radius: 20px;
+  background-color: #333;
+  color: #fff;
+  outline: none;
+  font-size: 1em;
+  margin-right: 10px;
+}
+
+.inputField::placeholder {
+  color: #aaa;
+}
+
+.sendButton {
+  padding: 10px 15px;
+  background-color: #fff; /* Botão branco (ou outra cor da FURIA) */
+  color: #000; /* Texto preto */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.sendButton:hover {
+  background-color: #eee; /* Efeito hover sutil */
+}
