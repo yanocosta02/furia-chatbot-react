@@ -1,34 +1,28 @@
-import React, { useState } from "react";
+import React, { useState } from "react"; // Importar useState
 import Chatbot from "./components/Chatbot/Chatbot";
-import AcceptScreen from "./components/AcceptScreen/AcceptScreen";
-// Importe o CSS onde definiu os estilos de .App e .transitionElement
-import "./App.css"; // Ou garanta que index.css está sendo carregado
+import AcceptScreen from "./components/AcceptScreen/AcceptScreen"; // <-- Importar o novo componente
+import "./App.css";
 
 function App() {
-  const [isChatAccepted, setIsChatAccepted] = useState(false);
+  // Estado para controlar se a "conversa" foi aceita
+  const [isChatAccepted, setIsChatAccepted] = useState(false); // Começa como falso
 
+  // Função para ser chamada quando o botão ACEITAR for clicado
   const handleAcceptChat = () => {
     setIsChatAccepted(true);
+    // Opcional: Tocar um som de aceite aqui, se desejar (mais complexo)
   };
 
   return (
-    // Agora o .App tem a imagem de fundo e centraliza o conteúdo
     <div className="App">
-      {/* Elemento AcceptScreen com controle de visibilidade/transição */}
-      <div
-        className={`transitionElement ${
-          !isChatAccepted ? "visible" : "hidden"
-        }`}
-      >
+      {/* Renderização Condicional */}
+      {!isChatAccepted ? (
+        // Se ainda não aceitou, mostra a tela de aceite
         <AcceptScreen onAccept={handleAcceptChat} />
-      </div>
-
-      {/* Elemento Chatbot com controle de visibilidade/transição */}
-      <div
-        className={`transitionElement ${isChatAccepted ? "visible" : "hidden"}`}
-      >
+      ) : (
+        // Se já aceitou, mostra o chatbot
         <Chatbot />
-      </div>
+      )}
     </div>
   );
 }
