@@ -1,0 +1,143 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* --- Imagem de Fundo --- */
+  background-image: url("/fundocs.png"); /* Nome da sua imagem */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* --- Fallback / Escurecimento Opcional --- */
+  /* background-color: rgba(27, 40, 56, 0.7); */
+  /* background-blend-mode: darken; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  /* --- MODIFICAÇÃO DA FONTE --- */
+  /* Coloque 'Open Sans' primeiro, seguido por fallbacks */
+  font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  /* --- FIM DA MODIFICAÇÃO --- */
+}
+
+.acceptBox {
+  /* Fundo da caixa semi-transparente escuro */
+  background-color: rgba(
+    42,
+    51,
+    60,
+    0.92
+  ); /* Cor escura da UI do CS, com transparência */
+  padding: 25px 35px;
+  border-radius: 5px; /* Bordas menos arredondadas */
+  text-align: center;
+  color: #e0e0e0;
+  border: 3px solid #64c969; /* Verde CS */
+  box-shadow: 0 0 15px rgba(106, 154, 42, 0.5); /* Sombra/brilho verde */
+  animation: fadeIn 0.5s ease-out;
+  min-width: 400px;
+  max-width: 500px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.icon {
+  display: none;
+}
+
+/* --- TÍTULO MODIFICADO --- */
+.title {
+  color: #64c969;
+  /* AJUSTE ESTE TAMANHO CONFORME NECESSÁRIO PARA CABER EM UMA LINHA */
+  font-size: 1em; /* Exemplo, ajuste! */
+  white-space: nowrap;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+/* --- FIM DO TÍTULO --- */
+
+.subtitle {
+  font-size: 0.95em;
+  color: #b0b8bf;
+  margin-bottom: 30px;
+}
+
+.acceptButton {
+  background-color: #64c969;
+  border: 1px solid #d5f1d1;
+  color: white;
+  padding: 12px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease,
+    opacity 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  min-width: 200px;
+}
+
+.acceptButton:hover:not(:disabled) {
+  background-color: #7cac3e;
+  border-color: #97c755;
+  transform: scale(1.02);
+}
+
+.acceptButton:active:not(:disabled) {
+  background-color: #5c8a25;
+  transform: scale(1);
+}
+
+.acceptButton:disabled {
+  background-color: #666;
+  border-color: #888;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.timerContainer {
+  margin-top: 20px;
+  font-size: 1.3em;
+  color: #64c969; /* Timer branco */
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.tip {
+  margin-top: 25px;
+  font-size: 0.85em;
+  color: #64c969;
+}
+
+.timeoutMessage {
+  margin-top: 20px;
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 1.2em;
+}

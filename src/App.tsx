@@ -1,15 +1,34 @@
-import Chatbot from "./components/Chatbot/Chatbot"; // Importa o componente principal
-import "./App.css"; // CSS para estilizar a página em si, se necessário
+import React, { useState } from "react";
+import Chatbot from "./components/Chatbot/Chatbot";
+import AcceptScreen from "./components/AcceptScreen/AcceptScreen";
+// Importe o CSS onde definiu os estilos de .App e .transitionElement
+import "./App.css"; // Ou garanta que index.css está sendo carregado
 
 function App() {
+  const [isChatAccepted, setIsChatAccepted] = useState(false);
+
+  const handleAcceptChat = () => {
+    setIsChatAccepted(true);
+  };
+
   return (
+    // Agora o .App tem a imagem de fundo e centraliza o conteúdo
     <div className="App">
-      {/* Você pode adicionar um título ou outros elementos na página aqui */}
-      {/* <header><h1>Bem-vindo ao Chat da FURIA!</h1></header> */}
-      <main>
-        <Chatbot /> {/* Renderiza o chatbot */}
-      </main>
-      {/* <footer><p>Feito com ❤️ por um fã</p></footer> */}
+      {/* Elemento AcceptScreen com controle de visibilidade/transição */}
+      <div
+        className={`transitionElement ${
+          !isChatAccepted ? "visible" : "hidden"
+        }`}
+      >
+        <AcceptScreen onAccept={handleAcceptChat} />
+      </div>
+
+      {/* Elemento Chatbot com controle de visibilidade/transição */}
+      <div
+        className={`transitionElement ${isChatAccepted ? "visible" : "hidden"}`}
+      >
+        <Chatbot />
+      </div>
     </div>
   );
 }
