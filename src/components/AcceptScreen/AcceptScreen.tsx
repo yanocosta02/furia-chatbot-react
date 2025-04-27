@@ -13,7 +13,7 @@ const formatTime = (seconds: number): string => {
   return `0:${displaySeconds}`;
 };
 const COUNTDOWN_START = 30; // Tempo inicial em segundos
-const ACCEPT_SOUND_SRC = "/accept_sound.mp3"; // <-- Nome do seu arquivo de som
+const ACCEPT_SOUND_SRC = "/audioAccept.mp3"; // <-- Nome do seu arquivo de som
 
 const AcceptScreen: React.FC<AcceptScreenProps> = ({ onAccept }) => {
   const [timeLeft, setTimeLeft] = useState(COUNTDOWN_START);

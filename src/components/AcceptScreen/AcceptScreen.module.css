@@ -7,11 +7,11 @@
   /* --- Imagem de Fundo --- */
   background-image: url("/fundocs.png"); /* Nome da sua imagem */
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
-  /* --- Fallback / Escurecimento Opcional --- */
-  /* background-color: rgba(27, 40, 56, 0.7); */
-  /* background-blend-mode: darken; */
+
+  /* --- Escurecer com camada de cor (rgba) --- */
+  background-color: rgba(0, 0, 0, 0.5); /* Cor preta semi-transparente */
+  background-blend-mode: darken; /* Faz a cor se misturar com a imagem de fundo */
 
   display: flex;
   justify-content: center;
@@ -19,7 +19,6 @@
   z-index: 1000;
 
   /* --- MODIFICAÇÃO DA FONTE --- */
-  /* Coloque 'Open Sans' primeiro, seguido por fallbacks */
   font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   /* --- FIM DA MODIFICAÇÃO --- */
@@ -124,9 +123,22 @@
 .timerContainer {
   margin-top: 20px;
   font-size: 1.3em;
-  color: #64c969; /* Timer branco */
+  color: #64c969;
   font-weight: bold;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .tip {
@@ -140,4 +152,15 @@
   color: #ff6b6b;
   font-weight: bold;
   font-size: 1.2em;
+  opacity: 0;
+  animation: fadeInMessage 1s forwards;
+}
+
+@keyframes fadeInMessage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -28,6 +28,20 @@ body {
   line-height: 1.5;
 }
 
+/* App.css */
+
+/* Animação para o chatbot */
+.chatbot-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.chatbot-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 button,
 input {
   /* Garante herança de fonte */
