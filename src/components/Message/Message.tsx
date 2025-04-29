@@ -1,8 +1,6 @@
 import React from "react";
 import { Message as MessageType } from "../../types/chat";
 import styles from "./Message.module.css";
-// Importe um ícone da FURIA se quiser usar como avatar do bot
-// import furiaIcon from '../../assets/furia-icon.png';
 
 interface MessageProps {
   message: MessageType;
@@ -19,9 +17,8 @@ const Message: React.FC<MessageProps> = ({ message }) => {
       }`}
     >
       {!isUser && (
-        <img src={"/furico.jpg"} alt="Bot" className={styles.avatar} />
+        <img src={"/furicobot.png"} alt="Bot" className={styles.avatar} />
       )}{" "}
-      {/* Ícone do Bot - coloque na pasta public */}
       <div className={`${styles.messageBubble} ${messageClass}`}>
         {message.text}
       </div>

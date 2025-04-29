@@ -1,16 +1,15 @@
-/* src/components/Chatbot/Chatbot.module.css */
 .chatbotContainer {
-  width: 350px; /* Ou use % para responsividade */
-  height: 500px;
-  background-color: #111; /* Preto FURIA (ajuste se tiver o exato) */
+  width: 400px;
+  height: 600px;
+  background-color: #111;
   border: 1px solid #444;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  font-family: sans-serif; /* Escolha uma fonte legal depois */
-  margin: 20px auto; /* Centraliza na página para teste */
+  font-family: sans-serif;
+  margin: 20px auto;
 }
 
 .chatbotHeader {
@@ -30,13 +29,11 @@
 }
 
 .logo {
-  height: 25px; /* Ajuste o tamanho do logo */
+  height: 25px;
   margin-right: 10px;
 }
 
 .statusIndicator {
   font-size: 0.8em;
-  color: #4caf50; /* Verde online */
+  color: #4caf50;
 }
-
-/* Adicione mais estilos conforme necessário */

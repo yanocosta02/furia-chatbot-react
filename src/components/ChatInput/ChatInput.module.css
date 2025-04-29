@@ -1,8 +1,7 @@
-/* src/components/ChatInput/ChatInput.module.css */
 .chatInputForm {
   display: flex;
   padding: 10px;
-  background-color: #222; /* Fundo escuro para o input */
+  background-color: #222;
   border-top: 1px solid #333;
 }
 
@@ -24,8 +23,8 @@
 
 .sendButton {
   padding: 10px 15px;
-  background-color: #fff; /* Botão branco (ou outra cor da FURIA) */
-  color: #000; /* Texto preto */
+  background-color: #fff;
+  color: #000;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -34,5 +33,5 @@
 }
 
 .sendButton:hover {
-  background-color: #eee; /* Efeito hover sutil */
+  background-color: #eee;
 }

@@ -31,7 +31,6 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         className={styles.sendButton}
         aria-label="Enviar mensagem"
       >
-        {/* Pode adicionar um ícone de enviar aqui depois */}
         Enviar
       </button>
     </form>

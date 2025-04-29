@@ -4,28 +4,27 @@ import AcceptScreen from "./components/AcceptScreen/AcceptScreen";
 import "./App.css";
 
 function App() {
-  // Estado para controlar se a "conversa" foi aceita
   const [isChatAccepted, setIsChatAccepted] = useState(false);
-  const [showChatbot, setShowChatbot] = useState(false); // Para controlar o chatbot com delay
+  const [showChatbot, setShowChatbot] = useState(false);
 
-  // Função para ser chamada quando o botão ACEITAR for clicado
   const handleAcceptChat = () => {
     setIsChatAccepted(true);
-
-    // Espera o tempo do áudio (5 segundos) para mostrar o chatbot
     setTimeout(() => {
-      setShowChatbot(true); // Exibe o chatbot após o tempo de áudio
-    }, 1500); // 5000ms = 5 segundos
+      setShowChatbot(true);
+    }, 1500);
   };
 
   return (
     <div className="App">
-      {/* Renderização Condicional */}
+      <video className="background-video" autoPlay muted loop playsInline>
+        <source src="/telacs.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo em HTML5.
+      </video>
+
+      {/* Conteúdo principal */}
       {!isChatAccepted ? (
-        // Se ainda não aceitou, mostra a tela de aceite
         <AcceptScreen onAccept={handleAcceptChat} />
       ) : (
-        // Se já aceitou, mostra o chatbot com transição
         <div className={`chatbot-container ${showChatbot ? "show" : ""}`}>
           <Chatbot />
         </div>

@@ -1,23 +1,25 @@
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Fica atrás do conteúdo */
+}
+
+/* Mantém o escurecimento */
 .App {
-  min-height: 100vh; /* Garante que ocupe a tela toda */
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column; /* Permite adicionar header/footer se quiser */
-  align-items: center; /* Centraliza conteúdo horizontalmente */
-  justify-content: center; /* Centraliza conteúdo verticalmente */
-  padding: 20px; /* Espaçamento interno opcional */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 
-  /* --- ESTILOS DE FUNDO MOVIDOS PARA CÁ --- */
-  background-image: url("/fundocs.png"); /* <-- Nome da sua imagem na pasta public */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* Adiciona um leve escurecimento GLOBAL para melhorar contraste do chat */
-  background-color: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade (0.5 = 50%) */
-  background-blend-mode: darken;
-
-  /* Garante que o conteúdo do App (Accept ou Chat) tenha espaço para as animações */
-  position: relative; /* Necessário para posicionar elementos filhos com absolute se precisar */
-  overflow: hidden; /* Evita barras de rolagem durante animações que saem um pouco */
+  background-color: rgba(0, 0, 0, 0.5); /* Camada escura por cima do vídeo */
 }
 
 /* Adicione aqui estilos globais do body se não estiverem em index.css */

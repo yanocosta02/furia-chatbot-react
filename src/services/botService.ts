@@ -1,116 +1,215 @@
-// src/services/botService.ts
-
-// --- DADOS (SEMI)-ESTÁTICOS DOS JOGOS ---
-// IMPORTANTE: Atualize estas informações manualmente após os jogos!
+// --- DADOS ESTÁTICOS ---
 const lastMatchInfo = {
-  opponent: "Team Spirit", // Ex: Nome do último oponente
-  score: "Derrota (1-2)", // Ex: Resultado (Vitória/Derrota e placar se simples)
-  event: "IEM Katowice 2024", // Ex: Nome do campeonato
-  detailsAvailable: true, // Mude para false se não tiver info recente
+  opponent: "Team Spirit",
+  score: "Derrota (1-2)",
+  event: "IEM Katowice 2024",
+  detailsAvailable: true,
 };
-
 const nextMatchInfo = {
-  opponent: "Natus Vincere", // Ex: Nome do próximo oponente (ou null se não confirmado)
-  date: "25/07, 14:00 BRT", // Ex: Data e hora (seja claro sobre fuso!)
-  event: "BLAST Premier Fall Groups", // Ex: Nome do campeonato
-  isConfirmed: true, // Mude para false se o próximo jogo ainda não estiver definido
+  opponent: "Natus Vincere",
+  date: "25/07, 14:00 BRT",
+  event: "BLAST Premier Fall Groups",
+  isConfirmed: true,
 };
-// --- FIM DOS DADOS (SEMI)-ESTÁTICOS ---
 
+// --- ESTRUTURA DE CLASSIFICAÇÃO (COM OBJETOS) ---
+
+const currentTournamentStandings = {
+  tournamentName: "PGL Major Copenhagen 2024: American RMR",
+  standings: [
+    { position: 1, team: "Imperial Esports", score: "3-0" },
+    { position: 2, team: "FURIA Esports", score: "3-0" },
+    { position: 3, team: "paiN Gaming", score: "3-1" },
+    { position: 4, team: "Complexity", score: "3-1" },
+    { position: 5, team: "Legacy", score: "3-1" },
+    { position: 6, team: "M80", score: "2-2" },
+    { position: 7, team: "Team Liquid", score: "2-2" },
+    { position: 8, team: "ODDIK", score: "2-2" },
+    { position: 9, team: "RED Canids", score: "1-2" },
+    { position: 10, team: "BOSS", score: "1-2" },
+    { position: 11, team: "MIBR", score: "1-2" },
+    { position: 12, team: "Wildcard Gaming", score: "1-2" },
+    { position: 13, team: "Nouns Esports", score: "0-2" },
+    { position: 14, team: "Elevate", score: "0-2" },
+    { position: 15, team: "NRG", score: "0-2" },
+    { position: 16, team: "BESTIA", score: "0-2" },
+  ],
+  sourceLink:
+    "https://liquipedia.net/counterstrike/PGL/2024/Copenhagen/Americas",
+  hasData: true,
+};
+
+// Função auxiliar para normalizar strings (mantida)
+function normalizeString(str: string): string {
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+// --- FUNÇÃO PARA FORMATAR A TABELA EM TEXTO ---
+function formatStandingsTableText(
+  data: typeof currentTournamentStandings
+): string {
+  if (!data.hasData || !data.standings || data.standings.length === 0) {
+    return "No momento não tenho a classificação de um campeonato específico pra te mostrar.";
+  }
+
+  // Título
+  let response = `📊 Classificação (${data.tournamentName}):\n`; // Adiciona duas quebras de linha
+
+  // Adiciona cada linha formatada
+  data.standings.forEach((row) => {
+    const positionStr = `${row.position}.`.padEnd(4);
+    const teamStr = row.team.padEnd(20);
+    const scoreStr = `(${row.score})`;
+    response += `${positionStr}${teamStr}${scoreStr}\n`; // Adiciona a linha e uma quebra de linha
+  });
+
+  // Adiciona a fonte, se houver
+  if (data.sourceLink) {
+    response += `\nFonte: ${data.sourceLink}`;
+  }
+
+  return response;
+}
+
+// --- getBotResponse (RETORNA APENAS STRING) ---
 export function getBotResponse(userMessage: string): string {
-  const lowerCaseMessage = userMessage.toLowerCase();
+  const normalizedMessage = normalizeString(userMessage);
 
-  // Saudações (Mantido igual, mas com nome Furico)
+  // Saudações
   if (
-    lowerCaseMessage.includes("oi") ||
-    lowerCaseMessage.includes("ola") ||
-    lowerCaseMessage.includes("eae") ||
-    lowerCaseMessage.includes("salve")
+    normalizedMessage.includes("oi") ||
+    normalizedMessage.includes("ola") ||
+    normalizedMessage.includes("eae") ||
+    normalizedMessage.includes("salve")
   ) {
     return "E aí! Aqui é o Furico, firmeza? Manda a braba aí. #DIADEFURIA";
   }
 
-  // Time / Lineup (Mantido igual)
+  // Time / Lineup
   if (
-    lowerCaseMessage.includes("time") ||
-    lowerCaseMessage.includes("jogadores") ||
-    lowerCaseMessage.includes("lineup") ||
-    lowerCaseMessage.includes("line") ||
-    lowerCaseMessage.includes("roster")
+    normalizedMessage.includes("time") ||
+    normalizedMessage.includes("jogadores") ||
+    normalizedMessage.includes("lineup") ||
+    normalizedMessage.includes("line") ||
+    normalizedMessage.includes("roster")
   ) {
-    // IMPORTANTE: Verifique a lineup atual da FURIA CS!
-    return "A line atual tem KSCERATO, yuurih, FalleN, chelo e skullz! Com o coach guerri no comando! 🔥"; // ATENÇÃO: Verifique se essa line ainda é a atual!
+    return "A line atual tem KSCERATO, yuurih, FalleN, chelo e skullz! Com o coach guerri no comando! 🔥"; // Verifique a line atual!
   }
 
-  // Próximo Jogo / Agenda (Ação Específica)
+  // Próximo Jogo / Agenda
   if (
-    lowerCaseMessage.includes("proximo jogo") ||
-    lowerCaseMessage.includes("próximo jogo") ||
-    lowerCaseMessage.includes("proxima partida") ||
-    lowerCaseMessage.includes("próxima partida") ||
-    lowerCaseMessage.includes("agenda") ||
-    lowerCaseMessage.includes("calendario")
+    normalizedMessage.includes("proximo jogo") ||
+    normalizedMessage.includes("proxima partida") ||
+    normalizedMessage.includes("agenda") ||
+    normalizedMessage.includes("calendario") ||
+    normalizedMessage.includes("jogos")
   ) {
     if (nextMatchInfo.isConfirmed && nextMatchInfo.opponent) {
-      // Se temos informação específica
       return `Anota aí! 📝 O próximo confronto da FURIA é contra a ${nextMatchInfo.opponent} pela ${nextMatchInfo.event}. Marcado para ${nextMatchInfo.date}! Prepara a torcida! #DIADEFURIA\n\nAgenda completa aqui: https://www.hltv.org/matches?team=8297`;
     } else {
-      // Se não temos informação específica
-      return "Opa! Ainda estou procurando os detalhes do próximo jogo. Assim que souber, eu te aviso! 😉 Por enquanto, fica de olho na agenda geral aqui: https://www.hltv.org/matches?team=8297";
+      return "Opa! Ainda estou procurando os detalhes do próximo jogo. 😉 Por enquanto, fica de olho na agenda geral aqui: https://www.hltv.org/team/8297/furia";
     }
   }
 
-  // Último Jogo / Resultado (Ação Específica)
+  // Último Jogo / Resultado
   if (
-    lowerCaseMessage.includes("ultimo jogo") ||
-    lowerCaseMessage.includes("último jogo") ||
-    lowerCaseMessage.includes("resultado") ||
-    lowerCaseMessage.includes("perdeu") ||
-    lowerCaseMessage.includes("ganhou")
+    normalizedMessage.includes("ultimo jogo") ||
+    normalizedMessage.includes("resultado") ||
+    normalizedMessage.includes("perdeu") ||
+    normalizedMessage.includes("ganhou")
   ) {
     if (lastMatchInfo.detailsAvailable && lastMatchInfo.opponent) {
-      // Se temos informação específica
-      return `No último jogo, pela ${lastMatchInfo.event}, o resultado contra ${lastMatchInfo.opponent} foi: ${lastMatchInfo.score}. Pra ver todos os detalhes e estatísticas: https://www.hltv.org/results?team=8297`;
+      return `No último jogo, pela ${lastMatchInfo.event}, o resultado contra ${lastMatchInfo.opponent} foi: ${lastMatchInfo.score}. Pra ver todos os detalhes e estatísticas: https://www.hltv.org/team/8297/furia`;
     } else {
-      // Se não temos informação específica
-      return "Hmm, minha memória tá dando umas travadas sobre o último resultado exato 😅. Mas você pode conferir todos os resultados recentes da pantera aqui: https://www.hltv.org/results?team=8297";
+      return "Hmm, minha memória tá meio vaga sobre o último resultado exato 😅. Mas você pode conferir tudo aqui: https://www.hltv.org/team/8297/furia";
     }
   }
-
-  // Loja / Produtos (Mantido igual)
+  // Colocada antes da classificação específica para capturar a intenção mais geral
   if (
-    lowerCaseMessage.includes("loja") ||
-    lowerCaseMessage.includes("camisa") ||
-    lowerCaseMessage.includes("produtos") ||
-    lowerCaseMessage.includes("merch") ||
-    lowerCaseMessage.includes("comprar")
+    normalizedMessage.includes("campeonatos") ||
+    normalizedMessage.includes("eventos") ||
+    normalizedMessage.includes("onde a furia joga") ||
+    normalizedMessage.includes("hltv")
   ) {
-    return "Quer garantir o manto ou outros produtos irados? Acessa a loja oficial: https://furiastore.com/";
+    // Resposta genérica direcionando para a HLTV
+    return (
+      "Ficar de olho nos campeonatos da Pantera? Boa! 🏆 A HLTV é o point certo pra isso, lá tem a agenda atualizada e todos os resultados passados.\n\n" +
+      "📅 Agenda/Próximos Jogos: https://www.hltv.org/team/8297/furia\n" +
+      "📊 Resultados Anteriores: https://www.hltv.org/team/8297/furia\n\n" +
+      "Fica ligado! #DIADEFURIA"
+    );
+  }
+  // --- LÓGICA DE CLASSIFICAÇÃO (TEXTO) ---
+  if (
+    normalizedMessage.includes("classificacao") ||
+    normalizedMessage.includes("tabela") ||
+    normalizedMessage.includes("pontos") ||
+    normalizedMessage.includes("standings") ||
+    normalizedMessage.includes("grupo")
+  ) {
+    // Chama a função de formatação de TEXTO
+    return formatStandingsTableText(currentTournamentStandings);
+  }
+  // --- FIM DA LÓGICA DE CLASSIFICAÇÃO ---
+  if (
+    normalizedMessage.includes("historia") ||
+    normalizedMessage.includes("conquistas")
+  ) {
+    return "A FURIA foi fundada em 2017 e rapidamente se tornou uma potência no CS brasileiro e mundial! Um momento inesquecível foi o Top 4 no IEM Rio Major 2022, com a torcida apoiando muito! #DIADEFURIA";
   }
 
-  // Redes Sociais (Mantido igual)
+  // Loja / Produtos
   if (
-    lowerCaseMessage.includes("social") ||
-    lowerCaseMessage.includes("redes sociais") ||
-    lowerCaseMessage.includes("twitter") ||
-    lowerCaseMessage.includes("instagram") ||
-    lowerCaseMessage.includes("insta")
+    normalizedMessage.includes("loja") ||
+    normalizedMessage.includes("camisa") ||
+    normalizedMessage.includes("produtos") ||
+    normalizedMessage.includes("merch") ||
+    normalizedMessage.includes("comprar")
   ) {
-    return "Segue a gente pra não perder nada! Twitter: @furia | Instagram: @furia";
+    return "Quer garantir o manto ou outros produtos irados? Acessa a loja oficial: https://furia.gg/";
   }
 
-  // Agradecimento / Despedida (Mantido igual)
+  // Redes Sociais
   if (
-    lowerCaseMessage.includes("obrigado") ||
-    lowerCaseMessage.includes("vlw") ||
-    lowerCaseMessage.includes("valeu") ||
-    lowerCaseMessage.includes("thx") ||
-    lowerCaseMessage.includes("tchau")
+    normalizedMessage.includes("social") ||
+    normalizedMessage.includes("redes sociais") ||
+    normalizedMessage.includes("twitter") ||
+    normalizedMessage.includes("instagram") ||
+    normalizedMessage.includes("insta")
   ) {
-    return "Tamo junto! Precisando, é só chamar o Furico aqui! #DIADEFURIA";
+    return "Segue a gente pra não perder nada! \nX: @furia | Instagram: @furiagg";
   }
 
-  // Respostas Padrão (Fallback - Mantido igual)
+  if (
+    normalizedMessage.includes("liquipedia") ||
+    normalizedMessage.includes("wiki") ||
+    normalizedMessage.includes("informacoes") ||
+    normalizedMessage.includes("informação") ||
+    normalizedMessage.includes("info")
+  )
+    return "Acesse o perfil da FURIA na Liquipedia: https://liquipedia.net/counterstrike/FURIA_Esports";
+  if (normalizedMessage.includes("youtube"))
+    return "Inscreva-se no canal oficial da FURIA no YouTube: https://www.youtube.com/@FURIA";
+
+  // Agradecimento / Despedida
+  if (
+    normalizedMessage.includes("obrigado") ||
+    normalizedMessage.includes("vlw") ||
+    normalizedMessage.includes("valeu") ||
+    normalizedMessage.includes("thx") ||
+    normalizedMessage.includes("tchau") ||
+    normalizedMessage.includes("tamo junto") ||
+    normalizedMessage.includes("até mais") ||
+    normalizedMessage.includes("xau") ||
+    normalizedMessage.includes("ate logo")
+  ) {
+    return "Tamo junto! Precisando, é só chamar o bot do Furico aqui! #DIADEFURIA";
+  }
+
+  // Respostas Padrão (Fallback)
   const randomResponses = [
     "Opa! Essa aí eu não peguei, manda outra!",
     "Essa aí foi nível clutch 1v5... não entendi. Pode tentar de novo?",

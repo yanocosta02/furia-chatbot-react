@@ -12,8 +12,7 @@ const VacWarning: React.FC<VacWarningProps> = ({ onDismiss }) => {
     <div className={styles.warningContainer}>
       <IoWarningOutline className={styles.warningIcon} />
       <div className={styles.warningText}>
-        <strong>Atenção!</strong> Linguagem tóxica pode resultar em VAC Ban (do
-        chat 😉).
+        <strong>Atenção!</strong> Linguagem tóxica pode resultar em VAC Ban 😉.
       </div>
       <button
         className={styles.closeButton}

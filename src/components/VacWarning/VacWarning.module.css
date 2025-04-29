@@ -1,8 +1,8 @@
 .warningContainer {
   display: flex;
   align-items: center; /* Alinha itens verticalmente */
-  background-color: rgba(255, 224, 130, 0.1); /* Fundo amarelado bem sutil */
-  border: 1px solid rgba(255, 193, 7, 0.6); /* Borda amarela/laranja */
+  background-color: rgba(255, 224, 130, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.6);
   color: #ffe082; /* Texto amarelado claro */
   padding: 10px 15px;
   border-radius: 5px;
@@ -15,7 +15,7 @@
 .warningIcon {
   font-size: 1.5em; /* Tamanho do ícone */
   margin-right: 10px;
-  color: #ffc107; /* Cor do ícone (amarelo/laranja) */
+  color: #ffc107;
   flex-shrink: 0; /* Impede que o ícone encolha */
 }
 
@@ -45,5 +45,5 @@
 
 .closeButton:hover {
   opacity: 1;
-  color: #ffffff; /* Fica branco no hover */
+  color: #ffffff;
 }

@@ -18,24 +18,26 @@
   border-radius: 50%;
   margin-right: 8px;
   background-color: #555; /* Cor de fundo caso a imagem falhe */
+  flex-shrink: 0; /* Impede que o avatar encolha */
 }
 
 .messageBubble {
-  max-width: 75%; /* Evita que o balão ocupe a largura toda */
+  max-width: 85%; /* Ajuste a largura máxima se necessário */
   padding: 10px 15px;
-  border-radius: 18px; /* Balão arredondado */
-  word-wrap: break-word; /* Quebra palavras longas */
+  border-radius: 18px;
+  word-wrap: break-word;
   line-height: 1.4;
+  white-space: pre-line; /* Respeita as quebras de linha (\n) do texto */
 }
 
 .userMessage {
-  background-color: #007bff; /* Azul para usuário (pode mudar) */
+  background-color: #007bff; /* Azul para usuário */
   color: white;
-  border-bottom-right-radius: 5px; /* Detalhe visual */
+  border-bottom-right-radius: 5px;
 }
 
 .botMessage {
   background-color: #444; /* Cinza escuro para bot */
   color: white;
-  border-bottom-left-radius: 5px; /* Detalhe visual */
+  border-bottom-left-radius: 5px;
 }
