@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Chatbot from "./components/Chatbot/Chatbot";
 import AcceptScreen from "./components/AcceptScreen/AcceptScreen";
 import "./App.css";

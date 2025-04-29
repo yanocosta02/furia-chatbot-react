@@ -132,6 +132,7 @@ export function getBotResponse(userMessage: string): string {
     normalizedMessage.includes("campeonatos") ||
     normalizedMessage.includes("eventos") ||
     normalizedMessage.includes("onde a furia joga") ||
+    normalizedMessage.includes("torneios") ||
     normalizedMessage.includes("hltv")
   ) {
     // Resposta genérica direcionando para a HLTV

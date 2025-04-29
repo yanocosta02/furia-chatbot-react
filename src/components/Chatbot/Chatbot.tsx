@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"; // <-- Garanta que useState está importado
+import React, { useState, useEffect } from "react";
 import { Message } from "../../types/chat";
 import { getBotResponse } from "../../services/botService";
 import styles from "./Chatbot.module.css";
 import MessageList from "../MessageList/MessageList";
 import ChatInput from "../ChatInput/ChatInput";
-import VacWarning from "../VacWarning/VacWarning"; // <-- 1. Importar o novo componente
+import VacWarning from "../VacWarning/VacWarning";
 
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
