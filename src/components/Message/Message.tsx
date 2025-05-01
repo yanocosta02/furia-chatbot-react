@@ -17,7 +17,7 @@ const Message: React.FC<MessageProps> = ({ message }) => {
       }`}
     >
       {!isUser && (
-        <img src={"/furicobot.png"} alt="Bot" className={styles.avatar} />
+        <img src={"/furico.png"} alt="Bot" className={styles.avatar} />
       )}{" "}
       <div className={`${styles.messageBubble} ${messageClass}`}>
         {message.text}
