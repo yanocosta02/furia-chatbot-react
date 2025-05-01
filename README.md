@@ -2,7 +2,7 @@
 
 Um chatbot feito com React e TypeScript para fãs da FURIA Esports, inspirado no mascote Furico!
 
-![Screenshot do Furico em ação](furico.png)
+<img src="public/furicoreadme.png" alt="Screenshot do Furico em ação" width="10%" />
 
 ## 📖 Sobre o Projeto
 
@@ -43,6 +43,19 @@ A interface busca seguir a identidade visual preta e branca característica da o
 - **Ícones:** React Icons
 - **Ambiente:** Node.js
 - **Gerenciador de Pacotes:** npm
+
+## 📸 Screenshots
+
+Abaixo estão algumas imagens da aplicação em ação:
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <img src="public/capturatelainicial.png" alt="Tela de Aceite" width="45%" />
+  <img src="public/capturabot.png" alt="Interface do Chat" width="45%" />
+</div>
+
+> 📌 _As imagens acima ilustram a tela inicial e a interface conversacional do Furico._
+
+---
 
 ## 🔧 Instalação e Configuração
 
