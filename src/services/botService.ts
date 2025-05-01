@@ -94,9 +94,10 @@ export function getBotResponse(userMessage: string): string {
     normalizedMessage.includes("jogadores") ||
     normalizedMessage.includes("lineup") ||
     normalizedMessage.includes("line") ||
-    normalizedMessage.includes("roster")
+    normalizedMessage.includes("roster") ||
+    normalizedMessage.includes("escalacao")
   ) {
-    return "A line atual tem KSCERATO, yuurih, FalleN, chelo e skullz! Com o coach guerri no comando! 🔥"; // Verifique a line atual!
+    return "A line atual tem FalleN, yuurih, YEKINDAR, KSCERATO e molodoy! Com o coach sidde no comando! 🔥"; // Verifique a line atual!
   }
 
   // Próximo Jogo / Agenda
