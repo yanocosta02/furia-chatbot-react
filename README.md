@@ -88,6 +88,16 @@ npm run dev
 
 ---
 
+### 🌐 Acesse o Furico Online
+
+Você pode testar o chatbot agora mesmo no link abaixo:
+
+👉 [**furia-chatbot-mu.vercel.app**](https://furia-chatbot-mu.vercel.app/)
+
+> ⚠️ _Aguarde alguns segundos para a tela inicial carregar completamente antes de interagir com o Furico._
+
+---
+
 ### 🙋‍♂️ Autor
 
 Desenvolvido com 💻 e paixão pelo universo dos esports por [**Yan Oliveira da Costa**](https://github.com/yanocosta02).
