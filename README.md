@@ -1,4 +1,4 @@
-# Furico - O Chatbot da Torcida FURIA 🐾
+# FuricoBot - O Chatbot da Torcida FURIA 🐾
 
 Um chatbot feito com React e TypeScript para fãs da FURIA Esports, inspirado no mascote Furico!
 
